@@ -1,9 +1,0 @@
-sudo: required #super user acsess
-services: 
-  - docker      #copy of docker #test
-
-  before_install:
-    - docker build -t digu123/frontend -f Dockerfile.dev .
-
-    script:
-      - docker run -e CI=true digu123/frontend npm run test -- --coverage
