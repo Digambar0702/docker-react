@@ -7,3 +7,17 @@ services:
 
     script:
       - docker run -e CI=true digu123/frontend npm run test -- --coverage
+
+      deploy:
+        provider: elasticbeanstalk
+        region: "us-east-2"
+        app: "docker"
+        env : " Docker-env"
+        bucket_name: "elasticbeanstalk-us-east-2-336640895300"
+        bucket_path: "docker"
+        on:
+          branch: master
+        access_key_id: $AWS_ACCESS_KEY #added in travis CI in setting environment
+          secret_access_key:
+            secure: "$AWS_SECRET_KEY"
+
